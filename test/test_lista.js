@@ -1,10 +1,25 @@
 /**
- * Cuando se agrega un elemento al principio la lista de claves esta ordenada.
- * Cuando se agrega un elemento al final la lista de claves esta ordenada.
+ * En una lista vacia: 
+ *      - Hay cero elementos.
+ *      - No se encuentra ninguna clave.
+ * Cuando se agrega un elemento a una lista vacia:
+ *      - Hay un elemento.
+ *      - Se puede recuperar la clave a partir del valor.
+ *      - La lista de claves esta ordenada.
+ * Cuando se agrega una clave que ya esta en la lista:
+ *      - Se actualiza el valor correspondiente
+ * Cuando se agrega un elemento al principio de la lista:
+ *      - La lista de claves esta ordenada.
+ * Cuando se agrega un elemento al final de la lista:
+ *      - La lista de claves esta ordenada. 
+ * Cuando se agrega un elemento:
+ *      - La clave es una cadena de caracteres.
+ * Cuando se quiere borrar un elemento:
+ *      - Se puede borrar a partir de su clave. 
  */
 
- const assert = require("chai").assert; //importa los assert para poder usar la funcion
- const Lista = require("../src/lista.js");
+ const assert = require("chai").assert; 
+ const Lista = require("../src/lista.js"); 
 
  describe("en una lista vacia" , function() { //define un conjunto de pruebas
     var lista = new Lista(); 
