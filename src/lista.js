@@ -48,10 +48,6 @@ module.exports = class Lista {
         return arrayClave.sort();
     }
 
-    stringCheck(clave){
-        return typeof clave;
-    }
-
     delete(clave){
         var indice = this.findIndice(clave);
         this.#elementos.splice(indice,1);
