@@ -15,16 +15,20 @@ module.exports = class Lista {
         return NaN;
     }
     add(clave,valor){
-        if(this.#elementos.length==0){
-            this.#elementos.push({clave,valor});
-            } else {
-	            var indice = this.findIndice(clave);
-                if (indice == null){
-		        this.#elementos.push({clave,valor});
-	            } else {
-		        this.#elementos[indice].valor = valor;
-	            }
-            }
+        if(typeof clave == "string"){
+            if(this.#elementos.length==0){
+                this.#elementos.push({clave,valor});
+                } else {
+	                 var indice = this.findIndice(clave);
+                     if (indice == null){
+		                this.#elementos.push({clave,valor});
+	                } else {
+		                this.#elementos[indice].valor = valor;
+	                }
+                }
+            return true;
+        }
+        return false;
     }   
 
     findIndice(clave){

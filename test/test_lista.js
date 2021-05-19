@@ -75,8 +75,7 @@
  describe("cuando se agrega un elemento", function(){
      var lista = new Lista();
      it("la clave es una cadena de texto", function(){
-        lista.add("clave", "valor");
-        assert.equal(lista.stringCheck("clave"),"string");
+        assert.equal(lista.add("clave", "valor"),true);
      })
  })
 
@@ -85,7 +84,7 @@
      it("se puede borrar a partir de su clave",function(){
         lista.add("clave", "valor");
         lista.delete("clave");
-        assert.equal(lista.count(),0);
+        assert.equal(lista.delete(),0);
      })
  })
 
