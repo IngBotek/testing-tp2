@@ -1,43 +1,44 @@
 module.exports = class Lista {
 
     #elementos;
+    #index;
+
     constructor(){
         this.#elementos = [];
+        this.#index = null;
     }
+
     count(){
         return this.#elementos.length;
     }
+
     find(clave){
-        if(this.#elementos.length>0){
-            var index = this.findIndice(clave);
-            return this.#elementos[index].valor;
+        if(this.#elementos.length > 0){
+            for(var i=0; i<this.#elementos.length;i++){
+                if(this.#elementos[i].clave==clave){
+                    this.#index = i;
+                    return this.#elementos[this.#index].valor;
+                }
+                else {
+                    this.#index = null;
+                }
+            }
         }
         return NaN;
     }
+        
     add(clave,valor){
         if(typeof clave == "string"){
-            if(this.#elementos.length==0){
-                this.#elementos.push({clave,valor});
-                } else {
-	                 var indice = this.findIndice(clave);
-                     if (indice == null){
-		                this.#elementos.push({clave,valor});
-	                } else {
-		                this.#elementos[indice].valor = valor;
-	                }
-                }
+	        this.find(clave);
+            if (this.#index == null){
+		        this.#elementos.push({clave,valor});
+	        } 
+            else {
+		        this.#elementos[this.#index].valor = valor;
+	        }
             return true;
         }
         return false;
-    }   
-
-    findIndice(clave){
-        for(var i=0; i<this.#elementos.length;i++){
-            if(this.#elementos[i].clave==clave){
-                return i;
-            }
-            return null;
-        }
     }
 
     showClave(){
@@ -49,10 +50,9 @@ module.exports = class Lista {
     }
 
     delete(clave){
-        var indice = this.findIndice(clave);
-        this.#elementos.splice(indice,1);
+        this.find(clave);
+        this.#elementos.splice(this.#index,1);
         return this.#elementos.length;
     }
         
-
 };

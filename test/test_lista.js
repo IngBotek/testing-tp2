@@ -10,10 +10,12 @@
  *      - Se actualiza el valor correspondiente
  * Cuando se agrega un elemento al principio de la lista:
  *      - La lista de claves esta ordenada.
+ *      - La lista tiene mas de un elemento.
  * Cuando se agrega un elemento al final de la lista:
  *      - La lista de claves esta ordenada. 
+ *      - La lista tiene mas de un elemento.
  * Cuando se agrega un elemento:
- *      - La clave es una cadena de caracteres.
+ *      - La clave debe ser una cadena de caracteres.
  * Cuando se quiere borrar un elemento:
  *      - Se puede borrar a partir de su clave. 
  */
@@ -47,43 +49,49 @@
 
  describe("cuando se agrega una clave que ya está en la lista",function(){
     var lista = new Lista();
+    lista.add("clave", "valor");
+    lista.add("clave", "newvalor");
     it("se actualiza el valor correspondiente", function(){
-        lista.add("clave", "valor");
-        lista.add("clave", "newvalor");
         assert.equal(lista.find("clave"), "newvalor");
     })
  })
 
  describe("cuando se agrega un elemento al principio de la lista", function(){
      var lista = new Lista();
+     lista.add("clave", "valor");
+     lista.add("auto","value");
      it("la lista de claves esta ordenada", function(){
-        lista.add("clave", "valor");
-        lista.add("auto","value");
         assert.deepEqual(lista.showClave(), ["auto" , "clave"]);
+     })
+     it("la lista tiene mas de un elemento", function(){
+        assert.equal(lista.count(),2);
      })
  })
 
  describe("cuando se agrega un elemento al final de la lista", function(){
     var lista = new Lista();
+    lista.add("clave", "valor");
+    lista.add("zorro","value");
     it("la lista de claves esta ordenada", function(){
-       lista.add("clave", "valor");
-       lista.add("zorro","value");
        assert.deepEqual(lista.showClave(), ["clave" , "zorro"]);
+    })
+    it("la lista tiene mas de un elemento", function(){
+        assert.equal(lista.count(),2);
     })
 })
 
  describe("cuando se agrega un elemento", function(){
      var lista = new Lista();
-     it("la clave es una cadena de texto", function(){
-        assert.equal(lista.add("clave", "valor"),true);
+     it("la clave debe ser una cadena de caracteres", function(){
+        assert.equal(lista.add(12315541, "valor"),false);
      })
  })
 
  describe("cuando se quiere borrar un elemento",function(){
      var lista = new Lista();
+     lista.add("clave", "valor");
+     lista.delete("clave");
      it("se puede borrar a partir de su clave",function(){
-        lista.add("clave", "valor");
-        lista.delete("clave");
         assert.equal(lista.delete(),0);
      })
  })
